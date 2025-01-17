@@ -19,6 +19,7 @@ if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "admin") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/dashboard.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Admin Dashboard</title>
 </head>
 <body>
