@@ -40,7 +40,7 @@ $user = $users->getAllUsers();
             <ul class="nav-links">
                 <li><a href="./index.php">
                         <i class="uil uil-estate"></i>
-                        <span class="link-name">Dahsboard</span>
+                        <span class="link-name">Dashboard</span>
                     </a></li>
                 <li><a href="./statistics.php">
                         <i class="uil uil-chart"></i>
