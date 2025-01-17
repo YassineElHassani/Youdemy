@@ -19,6 +19,7 @@ if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "admin") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/dashboard.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Admin Dashboard</title>
 </head>
 <body>
@@ -35,7 +36,7 @@ if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "admin") {
             <ul class="nav-links">
                 <li><a href="./index.php">
                     <i class="uil uil-estate"></i>
-                    <span class="link-name">Dahsboard</span>
+                    <span class="link-name">Dashboard</span>
                 </a></li>
                 <li><a href="./statistics.php">
                     <i class="uil uil-chart"></i>
