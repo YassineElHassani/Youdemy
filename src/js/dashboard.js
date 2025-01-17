@@ -1,3 +1,7 @@
+let addBtn = document.getElementById('addBtn');
+let cancelBtn = document.getElementById('cancel');
+let elem = document.getElementById('form');
+
 const body = document.querySelector("body"),
   modeToggle = body.querySelector(".mode-toggle");
 sidebar = body.querySelector("nav");
@@ -31,3 +35,14 @@ sidebarToggle.addEventListener("click", () => {
   }
 });
 
+addBtn.addEventListener("click", function() {
+    if(elem.style.visibility == "hidden") {
+        elem.style.visibility = "visible";
+    }
+});
+
+cancelBtn.addEventListener("click", function() {
+  if(elem.style.visibility == "visible") {
+      elem.style.visibility= "hidden";
+  }
+});
