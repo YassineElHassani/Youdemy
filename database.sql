@@ -44,6 +44,15 @@ CREATE TABLE course_tags (
     FOREIGN KEY (tag_id) REFERENCES tags(id)
 );
 
+-- Subscription table
+CREATE TABLE subscription (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    course_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+); 
+
 -- Create trigger
 DELIMITER $$
 
