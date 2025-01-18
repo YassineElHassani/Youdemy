@@ -108,7 +108,7 @@ class Users {
                     header('Location: ../pending.php');
                 } else {
                     $_SESSION['logged_in'] = true;
-                    header("Location: ../courses_platform.php");
+                    header("Location: ../platform/index.php");
                 }
             } else if($user['role'] == "student") {
                 if($user['status'] == "suspended") {
@@ -126,12 +126,6 @@ class Users {
         }
     }
 
-    public function getAllUsers() {
-        $conn = Database::getConnection();
-        $stmt = $conn->prepare("SELECT * FROM users WHERE role = 'student' OR role = 'teacher'");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 }
 
 ?>
