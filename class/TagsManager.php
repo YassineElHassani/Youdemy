@@ -49,6 +49,13 @@ class TagsManager {
         $tag = $stmt->fetch();
         return new Tags($tag['id'], $tag['name']);
     }
+
+    public function getTags() {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT * FROM tags");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 
