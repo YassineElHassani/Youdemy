@@ -1,10 +1,10 @@
 <?php
-require_once '../config/connection.php';
+require_once '../class/Admin.php';
+
+$activate = new Admin();
 
 if(isset($_GET["id"])) {
-    $conn = Database::getConnection();
-    $stmt = $conn->prepare("UPDATE users SET status = 'active' WHERE id = $_GET[id]");
-    $stmt->execute();
+    $activate->activateUser();
 }
 
 header('Location: ./manageUsers.php');
