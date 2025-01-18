@@ -1,7 +1,5 @@
 <?php
 
-require_once '../config/connection.php';
-
 class Course {
     public $id;
     public $title;
@@ -9,14 +7,16 @@ class Course {
     public $content;
     public $user_id;
     public $category_id;
+    public $tags = [];
 
-    public function __construct($id, $title, $description, $content, $user_id, $category_id) {
+    public function __construct($id = null, $title = null, $description = null, $content = null, $user_id = null, $category_id = null, $tags = []) {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
         $this->user_id = $user_id;
         $this->category_id = $category_id;
+        $this->tags = $tags;
     }
 
     public function getId() {
@@ -43,6 +43,10 @@ class Course {
         return $this->category_id;
     }
 
+    public function getTags() {
+        return $this->tags;
+    }
+
     public function setId($id) {
         $this->id = $id;
     }
@@ -63,23 +67,27 @@ class Course {
         $this->category_id = $category_id;
     }
 
-    public function tableRow() {
+    public function setTags($tags) {
+        $this->tags = $tags;
+    }
+
+    public function renderRow() {
+        $id = htmlspecialchars($this->id);
         $title = htmlspecialchars($this->title);
-        $description = htmlspecialchars($this->description);
-        $content = htmlspecialchars($this->content);
-        $user_name = htmlspecialchars($this->user_id);
-        $categories = htmlspecialchars($this->category_id);
+        $category_id = htmlspecialchars($this->category_id);
 
         return "
-        <tr>
-            <td>$title</td>
-            <td>$description</td>
-            <td>$content</td>
-            <td>$user_name</td>
-            <td>$categories</td>
-            <td>
-                <a class='badge-pending' href='../dashboard/courseEdit.php?id=$this->id'>Edit</a>
-                <a class='badge-trashed' href='../dashboard/courseDelete.php?id=$this->id'>Delete</a>
+        <tr class='hover:bg-gray-100'>
+            <td class='px-4 py-3'>$id</td>
+            <td class='px-4 py-3'>$title</td>
+            <td class='px-4 py-3'>$category_id</td>
+            <td class='px-4 py-3'>
+                <center>
+                    <div class='relative'>
+                        <button><a href='../dashboard/tag/edit.php?id=$this->id' class='block px-4 py-2 text-gray-700 rounded-full hover:bg-green-100'>Edit</a></button>
+                        <button><a href='../dashboard/tag/delete.php?id=$this->id' class='block px-4 py-2 text-gray-700 rounded-full hover:bg-red-100'>Delete</a></button>
+                    </div>
+                </center>
             </td>
         </tr>
         ";
