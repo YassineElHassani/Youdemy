@@ -80,6 +80,7 @@ if (isset($_SESSION['already']) && $_SESSION['already'] === true) {
 
         <label for="role">Role</label>
         <select name="role" id="role" required>
+            <option value="" disabled selected>Select your role</option>
             <option value="teacher">Teacher</option>
             <option value="student">Student</option>
         </select>
