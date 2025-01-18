@@ -49,6 +49,13 @@ class CategoriesManager {
         $category = $stmt->fetch();
         return new Categories($category['id'], $category['name']);
     }
+
+    public function getCategories() {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare('SELECT * FROM categories');
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 
