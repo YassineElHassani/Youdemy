@@ -18,6 +18,7 @@ $tags = new TagsManager();
 $course = new CoursesManager();
 
 if (isset($_POST['submit'])) {
+    $image = $_POST["image"];
     $title = $_POST["title"];
     $description = $_POST["description"];
     $content = $_POST["content"];
@@ -25,7 +26,7 @@ if (isset($_POST['submit'])) {
     $categories = $_POST["categories"];
     $tags = $_POST['tags'];
 
-    $newCourse = new Course(null, $title, $description, $content, $user_id, $categories, $tags);
+    $newCourse = new Course(null,$image, $title, $description, $content, $user_id, $categories, $tags);
 
     $course->addCourse($newCourse);
 }
@@ -63,6 +64,12 @@ include_once './layout/courseHeader.php';
                     <input type="text" name="description" id="description" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Enter a short description">
+                </div>
+                <div>
+                    <label for="image" class="block text-gray-600 font-medium mb-1">Course Image</label>
+                    <input type="text" name="image" id="image" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter the image URL">
                 </div>
                 <div>
                     <label for="content" class="block text-gray-600 font-medium mb-1">Content</label>
@@ -135,6 +142,7 @@ include_once './layout/courseHeader.php';
             foreach ($courses as $oneCourse) {
                 echo "
                 <div class='bg-white rounded-lg shadow-md p-6'>
+                    <img src='{$oneCourse['image']}' alt='Course Image' class='w-full h-[300px] object-cover rounded-lg mb-4'>
                     <h3 class='text-xl font-semibold mb-2'>{$oneCourse['title']}</h3>
                     <p class='text-gray-600 mb-4'>{$oneCourse['description']}</p>
                     <div class='flex justify-between'>
