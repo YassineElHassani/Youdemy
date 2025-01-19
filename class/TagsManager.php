@@ -56,6 +56,13 @@ class TagsManager {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function getTagsForCourse($courseId) {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT tags.id, tags.name FROM tags JOIN course_tags ON tags.id = course_tags.tag_id WHERE course_tags.course_id = :course_id");
+        $stmt->execute([':course_id' => $courseId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 
