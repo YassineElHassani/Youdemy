@@ -26,6 +26,7 @@ CREATE TABLE tags (
 -- Courses table
 CREATE TABLE courses (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    image VARCHAR(255),
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     content TEXT NOT NULL,
