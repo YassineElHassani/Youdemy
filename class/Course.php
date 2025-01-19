@@ -2,6 +2,7 @@
 
 class Course {
     public $id;
+    public $image;
     public $title;
     public $description;
     public $content;
@@ -9,8 +10,9 @@ class Course {
     public $category_id;
     public $tags = [];
 
-    public function __construct($id = null, $title = null, $description = null, $content = null, $user_id = null, $category_id = null, $tags = []) {
+    public function __construct($id, $image, $title, $description, $content, $user_id, $category_id, $tags = []) {
         $this->id = $id;
+        $this->image = $image;
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
@@ -21,6 +23,10 @@ class Course {
 
     public function getId() {
         return $this->id;
+    }
+
+    public function getImage() {
+        return $this->image;
     }
 
     public function getTitle() {
@@ -51,6 +57,10 @@ class Course {
         $this->id = $id;
     }
 
+    public function setImage($image) {
+        $this->image = $image;
+    }
+
     public function setTitle($title) {
         $this->title = $title;
     }
@@ -75,6 +85,7 @@ class Course {
         $id = htmlspecialchars($this->id);
         $title = htmlspecialchars($this->title);
         $category_id = htmlspecialchars($this->category_id);
+
 
         return "
         <tr class='hover:bg-gray-100'>
