@@ -43,7 +43,7 @@ if (isset($_GET['id'])) {
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="../../src/img/logo.jpg" alt="">
+                <img src="../../src/img/logo.png" alt="">
             </div>
             <span class="logo_name">Youdemy</span>
         </div>
