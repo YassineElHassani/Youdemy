@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
     $categories = $_POST["categories"];
     $tags = $_POST['tags'];
 
-    $newCourse = new Course(null,$image, $title, $description, $content, $user_id, $categories, $tags);
+    $newCourse = new Course(null, $image, $title, $description, $content, $user_id, $categories, $tags);
 
     $course->addCourse($newCourse);
 }
@@ -136,6 +136,33 @@ include_once './layout/courseHeader.php';
                 </div>
             </form>
         </div>
+        <div class="flex justify-between items-center bg-white min-w-full mt-8 border border-gray-200 shadow-sm rounded-lg overflow-hidden">
+            <h1 class="ml-5 text-2xl font-bold text-gray-700 mb-4 mt-5">Admin Courses</h1>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            <?php
+            $courses = $course->getTeacherCourses($userId);
+            foreach ($courses as $oneCourse) {
+                echo "
+                <div class='bg-white rounded-lg shadow-md p-6'>
+                    <img src='{$oneCourse['image']}' alt='Course Image' class='w-full h-[300px] object-cover rounded-lg mb-4'>
+                    <h3 class='text-xl font-semibold mb-2 overflow-hidden'>{$oneCourse['title']}</h3>
+                    <p class='text-gray-600 mb-4 overflow-hidden'>{$oneCourse['description']}</p>
+                    <div class='flex justify-between items-center'>
+                        <a href='../course.php?id={$oneCourse['id']}' class='no-underline text-white bg-blue-500 hover:bg-blue-700 hover:text-white hover:no-underline font-bold py-2 px-4 rounded'>Learn More</a>
+                        <div>
+                            <a href='./course/edit.php?id={$oneCourse['id']}' class='no-underline bg-yellow-500 hover:bg-yellow-700 hover:no-underline hover:text-white text-white font-bold py-2 px-4 rounded edit-course'>Edit</a>
+                            <a href='./course/delete.php?id={$oneCourse['id']}' class='no-underline bg-red-500 hover:bg-red-700 hover:no-underline hover:text-white text-white font-bold py-2 px-4 rounded delete-course'>Delete</a>
+                        </div>
+                    </div>
+                </div>
+                ";
+            }
+            ?>
+        </div>
+        <div class="flex justify-between items-center bg-white min-w-full mt-8 border border-gray-200 shadow-sm rounded-lg overflow-hidden">
+            <h1 class="ml-5 text-2xl font-bold text-gray-700 mb-4 mt-5">All Courses</h1>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
             <?php
             $courses = $course->getAllCourses();
@@ -143,8 +170,8 @@ include_once './layout/courseHeader.php';
                 echo "
                 <div class='bg-white rounded-lg shadow-md p-6'>
                     <img src='{$oneCourse['image']}' alt='Course Image' class='w-full h-[300px] object-cover rounded-lg mb-4'>
-                    <h3 class='text-xl font-semibold mb-2'>{$oneCourse['title']}</h3>
-                    <p class='text-gray-600 mb-4'>{$oneCourse['description']}</p>
+                    <h3 class='text-xl font-semibold mb-2 overflow-hidden'>{$oneCourse['title']}</h3>
+                    <p class='text-gray-600 mb-4 overflow-hidden'>{$oneCourse['description']}</p>
                     <div class='flex justify-between'>
                         <a href='../course.php?id={$oneCourse['id']}' class='no-underline text-white bg-blue-500 hover:bg-blue-700 hover:text-white hover:no-underline font-bold py-2 px-4 rounded'>Learn More</a>
                         <a href='./course/delete.php?id={$oneCourse['id']}' class='no-underline bg-red-500 hover:bg-red-700 hover:no-underline hover:text-white text-white font-bold py-2 px-4 rounded delete-course'>Delete</a>
