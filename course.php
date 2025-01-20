@@ -28,29 +28,25 @@ if (isset($_GET['id'])) {
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./src/css/style.css">
     <link rel="shortcut icon" href="./src/img/ico.png" type="image/x-icon">
-    <title>Course Details</title>
+    <title>Youdemy | Course Details</title>
 </head>
 
 <body class="bg-gray-50">
     <nav class="navbar">
         <span class="hamburger-btn material-symbols-rounded">menu</span>
-        <a href="/" class="logo">
-            <img src="./src/img/logo.jpg" alt="logo">
+        <a href="./home.php" class="logo">
+            <img src="./src/img/logo.png" alt="logo">
             <h2>Youdemy</h2>
         </a>
         <ul class="links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Portfolio</a></li>
             <li><a href="#">Courses</a></li>
             <li><a href="#">About us</a></li>
             <li><a href="#">Contact us</a></li>
         </ul>
         <div style="display: flex; align-items: center; gap: 10px;">
-            <a href="./login/index.php"><button class="login-btn">LOG IN</button></a>
-            <a href="./register/index.php"><button class="login-btn">REGISTER</button></a>
+            <a href="./logout.php"><img src="./src/img/logout.png" height="25px" width="25px" alt="Logout"></a>
         </div>
     </nav>
-
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <!-- Course Header -->
         <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-6">
@@ -60,17 +56,16 @@ if (isset($_GET['id'])) {
                 </h2>
                 <div class="mt-2 flex items-center text-sm text-gray-500">
                     <span class="mr-4">
-                        Category: 
+                        Category:
                         <b><?= htmlspecialchars($category->getName()); ?></b>
                     </span>
                     <span>
-                        Course By: 
+                        Course By:
                         <b><?= htmlspecialchars($courseCreator = $courseManager->getCourseCreator($_GET['id'])); ?></b>
                     </span>
                 </div>
             </div>
         </div>
-
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- Course Content -->
             <div class="lg:col-span-2">
@@ -83,20 +78,10 @@ if (isset($_GET['id'])) {
                         </p>
                     </div>
                 </div>
-
-                <!-- Content -->
-                <div class="bg-white shadow sm:rounded-lg">
-                    <div class="px-4 py-5 sm:p-6">
-                        <img src="<?= htmlspecialchars($thisCourse->getImage()); ?>" alt="Course Image" class="w-full h-[300px] object-cover rounded-lg mb-4">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">Course Content</h3>
-                        <div class="prose max-w-none"><?php echo $thisCourse->getContent(); ?></div>
-                    </div>
-                </div>
             </div>
-
             <!-- Sidebar -->
             <div class="lg:col-span-1">
-                <div class="bg-white shadow sm:rounded-lg sticky top-6">
+                <div class="bg-white shadow sm:rounded-lg top-6">
                     <div class="px-4 py-5 sm:p-6">
                         <!-- Tags -->
                         <div class="mb-6">
@@ -117,6 +102,14 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="bg-white shadow sm:rounded-lg">
+            <div class="px-4 py-5 sm:p-6">
+                <img src="<?= htmlspecialchars($thisCourse->getImage()); ?>" alt="Course Image" class="w-full h-[500px] object-cover rounded-lg mb-4">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Course Content</h3>
+                <div class="prose overflow-hidden"><?php echo $thisCourse->getContent(); ?></div>
             </div>
         </div>
     </main>
