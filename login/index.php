@@ -46,7 +46,7 @@ if (isset($_SESSION['registered']) && $_SESSION['registered'] === true) {
         <nav class="navbar">
             <span class="hamburger-btn material-symbols-rounded">menu</span>
             <a href="../index.php" class="logo">
-                <img src="../src/img/logo.jpg" alt="logo">
+                <img src="../src/img/logo.png" alt="logo">
                 <h2>Youdemy</h2>
             </a>
             <ul class="links">
