@@ -58,7 +58,7 @@ if (isset($_GET['id'])) {
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="../../src/img/logo.jpg" alt="">
+                <img src="../../src/img/logo.png" alt="">
             </div>
             <span class="logo_name">Youdemy</span>
         </div>
@@ -200,7 +200,7 @@ if (isset($_GET['id'])) {
                         <div class="text-right">
                             <button type="submit" name="submit"
                                 class="bg-blue-500 text-white font-medium py-2 px-6 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                                Submit
+                                Update
                             </button>
                         </div>
                     </form>
