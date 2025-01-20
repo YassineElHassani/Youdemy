@@ -29,7 +29,7 @@ CREATE TABLE courses (
     image VARCHAR(255),
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    content TEXT NOT NULL,
+    content MEDIUMTEXT NOT NULL,
     user_id INT NOT NULL,
     category_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
