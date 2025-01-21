@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../src/css/dashboard.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="shortcut icon" href="../src/img/ico.png" type="image/x-icon">
     <title>Admin Dashboard</title>
 </head>
