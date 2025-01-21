@@ -35,6 +35,7 @@ if (isset($_SESSION['already']) && $_SESSION['already'] === true) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!--Stylesheet-->
+    <link rel="shortcut icon" href="./src/img/ico.png" type="image/x-icon">
     <link rel="stylesheet" href="../src/css/loginStyle.css">
     <link rel="stylesheet" href="../src/css/style.css">
 </head>
@@ -47,8 +48,6 @@ if (isset($_SESSION['already']) && $_SESSION['already'] === true) {
                 <h2>Youdemy</h2>
             </a>
             <ul class="links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Portfolio</a></li>
                 <li><a href="#">Courses</a></li>
                 <li><a href="#">About us</a></li>
                 <li><a href="#">Contact us</a></li>
