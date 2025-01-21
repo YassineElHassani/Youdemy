@@ -1,5 +1,5 @@
 <?php 
-require_once '../config/connection.php';
+require_once __DIR__ . '/../config/connection.php';
 
 class Users {
     protected $id;
@@ -103,6 +103,7 @@ class Users {
             } else if($user['role'] == "teacher") {
                 if($user['status'] == "suspended") {
                     $_SESSION['noPerm'] = true;
+                    header('Location: ../suspending.php');
                 } else if($user['status'] == "pending") {
                     $_SESSION['pending'] = true;
                     header('Location: ../pending.php');
@@ -113,12 +114,13 @@ class Users {
             } else if($user['role'] == "student") {
                 if($user['status'] == "suspended") {
                     $_SESSION['noPerm'] = true;
+                    header('Location: ../suspending.php');
                 } else if($user['status'] == "pending") {
                     $_SESSION['pending'] = true;
-                    header('Location: ../pending.php');
+                    header('Location: ../deactivation.php');
                 } else {
                     $_SESSION['logged_in'] = true;
-                    header('Location: ../courses.php');
+                    header('Location: ../home.php');
                 }
             }
         } else {
