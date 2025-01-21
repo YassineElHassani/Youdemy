@@ -14,12 +14,14 @@ body {
 }
 
 header {
-    position: fixed;
     width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.521);
+    max-width: 1500px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    margin-inline: auto;
     padding: 0 10px;
+    position: relative;
 }
 
 .navbar {
@@ -33,7 +35,7 @@ header {
 
 .navbar .hamburger-btn {
     display: none;
-    color: #fff;
+    color: #000000;
     cursor: pointer;
     font-size: 1.5rem;
 }
@@ -51,7 +53,7 @@ header {
 }
 
 .navbar .logo h2 {
-    color: #fff;
+    color: #000000;
     font-weight: 600;
     font-size: 1.7rem;
 }
@@ -64,7 +66,7 @@ header {
 }
 
 .navbar .links a {
-    color: #fff;
+    color: #000000;
     font-size: 1.1rem;
     font-weight: 500;
     text-decoration: none;
@@ -72,7 +74,10 @@ header {
 }
 
 .navbar .links a:hover {
-    color: #19e8ff;
+    color: #ffffff;
+    background-color: #535353;
+    border-radius: 30px;
+    padding: 10px;
 }
 
 .navbar .login-btn {
@@ -93,7 +98,6 @@ header {
 }
 
 .blur-bg-overlay {
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
@@ -109,4 +113,49 @@ header {
 .show-popup .blur-bg-overlay {
     opacity: 1;
     pointer-events: auto;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 40px;
+    color: #fff;
+    background-color: #fff8;
+    font-size: 14px;
+    border-radius: 30px;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: 0.5s;
+}
+
+.content {
+    margin-top: 15%;
+    max-width: 600px;
+}
+
+.content h1 {
+    font-size: 70px;
+    color: #fff;
+}
+
+.content p {
+    margin: 10px 0 30px;
+    color: #fff8;
+}
+
+.content .btn {
+    padding: 15px 80px;
+    font-size: 16px;
+}
+
+.btn:hover {
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.feature-img {
+    width: 530px;
+    position: absolute;
+    bottom: 20%;
+    right: 10%;
 }
