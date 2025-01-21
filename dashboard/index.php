@@ -1,4 +1,5 @@
 <?php
+require_once '../class/Admin.php';
 
 session_start();
 
@@ -7,7 +8,9 @@ if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "admin") {
     exit();
 }
 
-
+$stats = new Admin();
+$totalUsers = $stats->totalUsers();
+$totalCourses = $stats->totalCourses();
 
 ?>
 
@@ -25,18 +28,33 @@ include_once './layout/header.php';
         <div class="boxes">
             <div class="box box1">
                 <i class="uil uil-thumbs-up"></i>
-                <span class="text">Total Likes</span>
+                <span class="text">Total Users</span>
                 <span class="number">50,120</span>
             </div>
             <div class="box box2">
                 <i class="uil uil-comments"></i>
-                <span class="text">Comments</span>
+                <span class="text">Total Students</span>
                 <span class="number">20,120</span>
             </div>
             <div class="box box3">
                 <i class="uil uil-share"></i>
-                <span class="text">Total Share</span>
+                <span class="text">Total Teachers</span>
                 <span class="number">10,120</span>
+            </div>
+            <div class="box box4">
+                <i class="uil uil-share"></i>
+                <span class="text">Total Courses</span>
+                <span class="number">10,120</span>
+            </div>
+            <div class="box box5">
+                <i class="uil uil-comments"></i>
+                <span class="text">Total Categories</span>
+                <span class="number">20,120</span>
+            </div>
+            <div class="box box6">
+                <i class="uil uil-comments"></i>
+                <span class="text">Total Tags</span>
+                <span class="number">20,120</span>
             </div>
         </div>
     </div>
