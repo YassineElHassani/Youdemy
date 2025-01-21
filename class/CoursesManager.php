@@ -174,7 +174,7 @@ class CoursesManager {
         $isSubscribed = $stmt->fetchColumn();
     
         if ($isSubscribed) {
-            return ['success' => false, 'message' => 'You are already subscribed to this course.'];
+            return ['success' => false];
         }
     
         $stmt = $conn->prepare("INSERT INTO subscription (user_id, course_id) VALUES (:user_id, :course_id)");
@@ -185,5 +185,27 @@ class CoursesManager {
     
         return ['success' => true];
     }
+
+    public function getCoursesWithPagination($limit, $offset) {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT COUNT(*) AS total FROM courses");
+        $stmt->execute();
+        $totalCourses = $stmt->fetchColumn();
+    
+        $stmt = $conn->prepare("SELECT id, title, description, image
+            FROM courses
+            LIMIT :limit OFFSET :offset
+        ");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        return [
+            'courses' => $stmt->fetchAll(PDO::FETCH_ASSOC),
+            'totalCourses' => $totalCourses
+        ];
+    }
+    
+    
     
 }
