@@ -17,7 +17,7 @@ if(isset($_GET['id'])) {
     $message = $coursesManager->subscribeToCourse($userId, $_GET['id']);
 }
 
-header("Location: home.php");
+header("Location: myCourses.php");
 exit();
 
 ?>
