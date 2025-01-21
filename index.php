@@ -4,82 +4,87 @@ require_once './class/CoursesManager.php';
 $coursesManager = new CoursesManager();
 $courses = $coursesManager->getAllCourses();
 
+$limit = 6;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = max(1, $page);
+$offset = ($page - 1) * $limit;
+
+$paginationData = $coursesManager->getCoursesWithPagination($limit, $offset);
+$courses = $paginationData['courses'];
+$totalCourses = $paginationData['totalCourses'];
+
+$totalPages = ceil($totalCourses / $limit);
 
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include_once './layout/header.php';
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youdemy | Home</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./src/css/style.css">
-    <script src="./src/js/main.js" defer></script>
-</head>
+<div style="display: flex; align-items: center; justify-content: space-around;">
+    <div class="content">
+        <h1><b>Start your learning path</b></h1>
+        <p>Develop a passion for learning. if you do, you will never cease to grow.</p>
+        <a href="./register/index.php" class="btn">Start Now</a>
+    </div>
+    <div>
+        <img src="./src/img/image.png" class="feature-img">
+    </div>
+</div>
 
-<body>
-    <header>
-        <nav class="navbar">
-            <span class="hamburger-btn material-symbols-rounded">menu</span>
-            <a href="/" class="logo">
-                <img src="./src/img/logo.png" height="150px" alt="logo">
-                <h2>Youdemy</h2>
-            </a>
-            <ul class="links">
-                <li><a href="#">Courses</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact us</a></li>
-            </ul>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <a href="./login/index.php"><button class="login-btn">LOG IN</button></a>
-                <a href="./register/index.php"><button class="login-btn">REGISTER</button></a>
-            </div>
-        </nav>
-    </header>
+<div class="absolute mt-[335px] ml-[37%]">
+    <center><input type="text" placeholder="Search courses..." class="w-[500px] px-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-gray-500 focus:outline-none" />
+        <button class="absolute right-2 top-1/2 transform -translate-y-1/2">
+            <img src="./src/img/glass.png" height="35px" width="35px">
+        </button>
+    </center>
+</div>
 
-    <main>
+<section class="container mx-auto w-[100%] py-12 px-6 mt-[39vh] bg-[#3d3d3d]">
+    <div class="flex justify-between items-center mb-8">
+        <h2 class="text-3xl font-extrabold text-slate-100">Browse Courses</h2>
+    </div>
 
-    </main>
-
-    <section class="container mx-auto py-12 px-6 mt-[500px]">
-        <div class="flex justify-between items-center mb-8">
-            <h2 class="text-3xl font-extrabold text-slate-100">Browse Courses</h2>
-            <div class="relative">
-                <input
-                    type="text"
-                    placeholder="Search courses..."
-                    class="w-64 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-                <button
-                    class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600">
-                    Search
-                </button>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <?php foreach ($courses as $oneCourse): ?>
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="<?= htmlspecialchars($oneCourse['image']); ?>" alt="Course Image" class="w-full h-56 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2"><?= htmlspecialchars($oneCourse['title']); ?></h3>
-                        <p class="text-gray-600 mb-4 line-clamp-3"><?= htmlspecialchars($oneCourse['description']); ?></p>
-                        <div class="flex justify-between items-center">
-                            <a
-                                href="../course.php?id=<?= htmlspecialchars($oneCourse['id']); ?>"
-                                class="text-sm font-medium text-white bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">
-                                Subscription
-                            </a>
-                        </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <?php foreach ($courses as $oneCourse): ?>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="<?= htmlspecialchars($oneCourse['image']); ?>" alt="Course Image" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2"><?= htmlspecialchars($oneCourse['title']); ?></h3>
+                    <p class="text-gray-600 mb-4 line-clamp-3"><?= htmlspecialchars($oneCourse['description']); ?></p>
+                    <div class="flex justify-between items-center">
+                        <a
+                            href="./login/index.php"
+                            class="text-sm font-medium text-white bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">
+                            Subscription
+                        </a>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
-    </section>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
-</body>
+    <div class="mt-8 flex justify-center space-x-2">
+        <?php if ($page > 1): ?>
+            <a href="?page=<?= $page - 1; ?>" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Previous</a>
+        <?php endif; ?>
 
-</html>
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a href="?page=<?= $i; ?>" class="px-4 py-2 <?= $i === $page ? 'bg-gray-500 text-white' : 'bg-gray-200 text-gray-800'; ?> rounded hover:bg-gray-600 hover:text-white">
+                <?= $i; ?>
+            </a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+            <a href="?page=<?= $page + 1; ?>" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Next</a>
+        <?php endif; ?>
+    </div>
+
+</section>
+
+
+
+<?php
+include_once './layout/footer.php';
+?>
