@@ -2,7 +2,7 @@
 require_once '../config/connection.php';
 require_once __DIR__ . '/Users.php';
 
-class Admin extends Users {
+class Admin {
 
     public function getAllUsers() {
         $conn = Database::getConnection();
@@ -31,14 +31,28 @@ class Admin extends Users {
 
     public function totalUsers() {
         $conn = Database::getConnection();
-        $stmt = $conn->prepare("SELECT COUNT(*) FROM users");
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE role = 'student' OR role = 'teacher'");
         $stmt->execute();
         return $stmt->fetchColumn();
     }
 
     public function totalActiveUsers() {
         $conn = Database::getConnection();
-        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE status = 'active' AND role = 'student' OR 'teacher';");
+        $stmt = $conn->prepare("SELECT COUNT(*) AS active_users FROM users WHERE status = 'active' AND role != 'admin';");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    public function totalDeactivatedUsers() {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT COUNT(*) AS deactivated_users FROM users WHERE status = 'pending' AND role != 'admin';");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    public function totalSuspendedUser() {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT COUNT(*) AS suspended_users FROM users WHERE status = 'suspended' AND role != 'admin';");
         $stmt->execute();
         return $stmt->fetchColumn();
     }
