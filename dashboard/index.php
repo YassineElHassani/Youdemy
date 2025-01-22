@@ -9,8 +9,7 @@ if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "admin") {
 }
 
 $stats = new Admin();
-$totalUsers = $stats->totalUsers();
-$totalCourses = $stats->totalCourses();
+$user = $stats->getAllUsers();
 
 ?>
 
@@ -19,102 +18,67 @@ include_once './layout/header.php';
 ?>
 
 <div class="dash-content">
-    <div class="overview">
-        <div class="title">
-            <i class="uil uil-tachometer-fast-alt"></i>
-            <span class="text">Dashboard</span>
-        </div>
-
-        <div class="boxes">
-            <div class="box box1">
-                <i class="uil uil-thumbs-up"></i>
-                <span class="text">Total Users</span>
-                <span class="number">50,120</span>
-            </div>
-            <div class="box box2">
-                <i class="uil uil-comments"></i>
-                <span class="text">Total Students</span>
-                <span class="number">20,120</span>
-            </div>
-            <div class="box box3">
-                <i class="uil uil-share"></i>
-                <span class="text">Total Teachers</span>
-                <span class="number">10,120</span>
-            </div>
-            <div class="box box4">
-                <i class="uil uil-share"></i>
-                <span class="text">Total Courses</span>
-                <span class="number">10,120</span>
-            </div>
-            <div class="box box5">
-                <i class="uil uil-comments"></i>
-                <span class="text">Total Categories</span>
-                <span class="number">20,120</span>
-            </div>
-            <div class="box box6">
-                <i class="uil uil-comments"></i>
-                <span class="text">Total Tags</span>
-                <span class="number">20,120</span>
-            </div>
-        </div>
-    </div>
 
     <div class="activity">
         <div class="title">
-            <i class="uil uil-clock-three"></i>
-            <span class="text">Recent Activity</span>
+            <span class="text">All Users info</span>
         </div>
 
         <div class="activity-data">
-            <div class="data names">
+            <div class="data">
+                <span class="data-title">ID</span>
+                <?php
+                $i = 0;
+                while ($i < count($user)): ?>
+                        <span class="data-list"><?php echo htmlspecialchars($user[$i]["id"]) ?></span>
+                <?php
+                    $i++;
+                endwhile;
+                ?>
+            </div>
+            <div class="data">
                 <span class="data-title">Name</span>
-                <span class="data-list">Prem Shahi</span>
-                <span class="data-list">Deepa Chand</span>
-                <span class="data-list">Manisha Chand</span>
-                <span class="data-list">Pratima Shahi</span>
-                <span class="data-list">Man Shahi</span>
-                <span class="data-list">Ganesh Chand</span>
-                <span class="data-list">Bikash Chand</span>
+                <?php
+                $i = 0;
+                while ($i < count($user)): ?>
+                        <span class="data-list"><?php echo htmlspecialchars($user[$i]["name"]) ?></span>
+                <?php
+                    $i++;
+                endwhile;
+                ?>
             </div>
-            <div class="data email">
+            <div class="data">
                 <span class="data-title">Email</span>
-                <span class="data-list">premshahi@gmail.com</span>
-                <span class="data-list">deepachand@gmail.com</span>
-                <span class="data-list">prakashhai@gmail.com</span>
-                <span class="data-list">manishachand@gmail.com</span>
-                <span class="data-list">pratimashhai@gmail.com</span>
-                <span class="data-list">manshahi@gmail.com</span>
-                <span class="data-list">ganeshchand@gmail.com</span>
+                <?php
+                $i = 0;
+                while ($i < count($user)): ?>
+                        <span class="data-list"><?php echo htmlspecialchars($user[$i]["email"]) ?></span>
+                <?php
+                    $i++;
+                endwhile;
+                ?>
             </div>
-            <div class="data joined">
-                <span class="data-title">Joined</span>
-                <span class="data-list">2022-02-12</span>
-                <span class="data-list">2022-02-12</span>
-                <span class="data-list">2022-02-13</span>
-                <span class="data-list">2022-02-13</span>
-                <span class="data-list">2022-02-14</span>
-                <span class="data-list">2022-02-14</span>
-                <span class="data-list">2022-02-15</span>
+            <div class="data">
+                <span class="data-title">Role</span>
+                <?php
+                $i = 0;
+                while ($i < count($user)): ?>
+                        <span class="data-list"><?php echo htmlspecialchars($user[$i]["role"]) ?></span>
+                <?php
+                    $i++;
+                endwhile;
+                ?>
             </div>
-            <div class="data type">
-                <span class="data-title">Type</span>
-                <span class="data-list">New</span>
-                <span class="data-list">Member</span>
-                <span class="data-list">Member</span>
-                <span class="data-list">New</span>
-                <span class="data-list">Member</span>
-                <span class="data-list">New</span>
-                <span class="data-list">Member</span>
-            </div>
-            <div class="data status">
+            <div class="data">
                 <span class="data-title">Status</span>
-                <span class="data-list">Liked</span>
-                <span class="data-list">Liked</span>
-                <span class="data-list">Liked</span>
-                <span class="data-list">Liked</span>
-                <span class="data-list">Liked</span>
-                <span class="data-list">Liked</span>
-                <span class="data-list">Liked</span>
+                <?php
+                $i = 0;
+                while ($i < count($user)): ?>
+                        <span class="data-list"><?php echo htmlspecialchars($user[$i]["status"]) ?></span>
+                <?php
+                    $i++;
+                endwhile;
+                ?>
             </div>
         </div>
     </div>
