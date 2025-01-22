@@ -21,7 +21,7 @@
                 <h2>Youdemy</h2>
             </a>
             <ul class="links">
-                <li><a href="#">Courses</a></li>
+                <li><a href="./myCourses.php">My Courses</a></li>
                 <li><a href="#">About us</a></li>
                 <li><a href="#">Contact us</a></li>
             </ul>
