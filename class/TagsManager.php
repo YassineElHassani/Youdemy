@@ -34,10 +34,11 @@ class TagsManager {
 
     public function deleteTag($id) {
         $conn = Database::getConnection();
+        $stmt = $conn->prepare("DELETE FROM course_tags WHERE tag_id = :id");
+        $stmt->execute([':id' => $id]);
+    
         $stmt = $conn->prepare("DELETE FROM tags WHERE id = :id");
-        $stmt->execute([
-            ':id' => $id
-        ]);
+        $stmt->execute([':id' => $id]);
     }
 
     public function getTag($id) {
