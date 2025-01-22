@@ -1,5 +1,5 @@
 <?php
-require_once './class/CoursesManager.php';
+require_once './class/Student.php';
 
 session_start();
 
@@ -10,8 +10,8 @@ if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "student") {
 
 $userId = $_SESSION["id"];
 
-$coursesManager = new CoursesManager();
-$subscribedCourses = $coursesManager->getCoursesBySubs($userId);
+$courses = new Student();
+$subscribedCourses = $courses->getCoursesBySubs($userId);
 
 ?>
 
