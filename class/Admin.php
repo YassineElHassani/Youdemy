@@ -2,7 +2,7 @@
 require_once '../config/connection.php';
 require_once __DIR__ . '/Users.php';
 
-class Admin {
+class Admin extends Users {
 
     public function getAllUsers() {
         $conn = Database::getConnection();
@@ -29,13 +29,6 @@ class Admin {
         $stmt->execute();
     }
 
-    public function totalUsers() {
-        $conn = Database::getConnection();
-        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE role = 'student' OR role = 'teacher'");
-        $stmt->execute();
-        return $stmt->fetchColumn();
-    }
-
     public function totalActiveUsers() {
         $conn = Database::getConnection();
         $stmt = $conn->prepare("SELECT COUNT(*) AS active_users FROM users WHERE status = 'active' AND role != 'admin';");
@@ -56,10 +49,45 @@ class Admin {
         $stmt->execute();
         return $stmt->fetchColumn();
     }
+    
+    public function totalUsers() {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE role != 'admin';");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    public function totalStudents() {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE role = 'student';");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    public function totalTeachers() {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE role = 'teacher';");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
 
     public function totalCourses() {
         $conn = Database::getConnection();
         $stmt = $conn->prepare("SELECT COUNT(*) FROM courses;");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    public function totalCategories() {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM Categories;");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    public function totalTags() {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tags;");
         $stmt->execute();
         return $stmt->fetchColumn();
     }
