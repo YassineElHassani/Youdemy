@@ -80,29 +80,6 @@ class Course {
     public function setTags($tags) {
         $this->tags = $tags;
     }
-
-    public function renderRow() {
-        $id = htmlspecialchars($this->id);
-        $title = htmlspecialchars($this->title);
-        $category_id = htmlspecialchars($this->category_id);
-
-
-        return "
-        <tr class='hover:bg-gray-100'>
-            <td class='px-4 py-3'>$id</td>
-            <td class='px-4 py-3'>$title</td>
-            <td class='px-4 py-3'>$category_id</td>
-            <td class='px-4 py-3'>
-                <center>
-                    <div class='relative'>
-                        <button><a href='../dashboard/tag/edit.php?id=$this->id' class='block px-4 py-2 text-gray-700 rounded-full hover:bg-green-100'>Edit</a></button>
-                        <button><a href='../dashboard/tag/delete.php?id=$this->id' class='block px-4 py-2 text-gray-700 rounded-full hover:bg-red-100'>Delete</a></button>
-                    </div>
-                </center>
-            </td>
-        </tr>
-        ";
-    }
 }
 
 

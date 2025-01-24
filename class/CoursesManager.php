@@ -3,17 +3,6 @@ require_once __DIR__ . '/../config/connection.php';
 require_once __DIR__ . '/Course.php';
 
 class CoursesManager {
-    public function displayCourses() {
-        $conn = Database::getConnection();
-        $stmt = $conn->prepare("SELECT * FROM courses");
-        $stmt->execute();
-        $courses = $stmt->fetchAll();
-        $data = [];
-        foreach ($courses as $course) {
-            $data[] = new Course($course['id'], $course['image'], $course['title'], $course['description'], $course['content'], $course['user_id'], $course['category_id']);
-        }
-        return $data;
-    }
 
     public function addCourse(Course $course) {
         $conn = Database::getConnection();
